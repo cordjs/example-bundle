@@ -1,4 +1,11 @@
 {#widget type="//mainBaseLayout" pageTitle="About" mainMenuItem="home"}
-  <h1>This is about page</h1>
-  <p>This story is about <strong>{who}</strong>...</p>
+  {#inline placeholder="default"}
+    <h1>This is about page</h1>
+    <p>This story is about <strong>{who}</strong>...</p>
+  {/inline}
+  {#inline}
+    <h1>This is second inline</h1>
+    <p>This is second story</strong>...</p>
+  {/inline}
+  {#widget type="//mainMenu" selectedItem="home" placeholder="xxx"/}
 {/widget}
