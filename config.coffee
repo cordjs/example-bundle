@@ -5,3 +5,9 @@ define [], () ->
       widget: '//aboutPage'
       params:
         characterName: ':someName'
+
+    '/example/smartPage/:number/':
+      widget: '//smartPage'
+
+    '/example/mainMenu':
+      widget: '//mainMenu'
