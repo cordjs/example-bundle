@@ -11,3 +11,6 @@ define [], () ->
 
     '/example/mainMenu':
       widget: '//mainMenu'
+
+    '/compile':
+      widget: '//compiler'
