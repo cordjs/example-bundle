@@ -1,6 +1,9 @@
 define [], () ->
   routes:
 
+    '/example/':
+      widget: '//homePage'
+
     '/example/about/:someName':
       widget: '//aboutPage'
       params:
