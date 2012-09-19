@@ -4,7 +4,7 @@ define [
 
   class MainBaseLayout extends Widget
 
-    behaviourClass = false
+    behaviourClass: false
 
     _defaultAction: (params, callback) ->
       @ctx.set

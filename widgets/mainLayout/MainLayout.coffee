@@ -4,7 +4,7 @@ define [
 
   class MainLayout extends Widget
 
-    behaviourClass = false
+    behaviourClass: false
 
     _defaultAction: (params, callback) ->
       @ctx.setSingle 'mainMenuItem', params.mainMenuItem
