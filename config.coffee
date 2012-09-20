@@ -2,18 +2,18 @@ define [], () ->
   routes:
 
     '/example/':
-      widget: '//homePage'
+      widget: '//HomePage'
 
     '/example/about/:someName':
-      widget: '//aboutPage'
+      widget: '//AboutPage'
       params:
         characterName: ':someName'
 
     '/example/smartPage/:number/':
-      widget: '//smartPage'
+      widget: '//SmartPage'
 
     '/example/mainMenu':
-      widget: '//mainMenu'
+      widget: '//MainMenu'
 
     '/compile':
-      widget: '//compiler'
+      widget: '//Compiler'

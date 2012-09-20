@@ -8,20 +8,18 @@ define [
 
     _defaultAction: (params, callback) ->
       widgetName = params.name
-      console.log widgetName
       require [
         "cord-w!#{ widgetName }"
-        "cord-helper!#{ widgetName }"
         'cord!widgetCompiler'
-      ], (WidgetClass, widgetPath, widgetCompiler) =>
+      ], (WidgetClass, widgetCompiler) =>
 
         widget = new WidgetClass true
-        widget.setPath widgetPath
         widgetCompiler.reset widget
         widget.compileTemplate (err, output) =>
           if err then throw err
 
-          tmplFullPath = "./#{ config.PUBLIC_PREFIX }/#{ widget.getTemplatePath() }.structure.json"
+          # todo: detect bundles or vendor dir correctly
+          tmplFullPath = "./#{ config.PUBLIC_PREFIX }/bundles/#{ widget.getTemplatePath() }.structure.json"
           fs.writeFile tmplFullPath, widgetCompiler.getStructureCode(false), (err)->
             if err then throw err
             console.log "template saved #{ tmplFullPath }"
