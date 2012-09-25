@@ -1,13 +1,13 @@
-{#extend type="//mainBaseLayout" pageTitle="About" mainMenuItem="about"}
+{#extend type="//MainBaseLayout" pageTitle="About" mainMenuItem="about"}
   {#inline placeholder="default"}
     <h1>This is about page</h1>
     <p>This story is about <strong>{who}</strong>...</p>
-    {#widget type="//mainMenu" selectedItem="^inlineMenuItem"/}
+    {#widget type="//MainMenu" selectedItem="^inlineMenuItem"/}
     <p>This text is under menu.</p>
   {/inline}
   {#inline}
     <h1>This is second inline</h1>
     <p>This is second story</strong>...</p>
   {/inline}
-  {#widget type="//mainMenu" selectedItem="home" placeholder="xxx"/}
+  {#widget type="//MainMenu" selectedItem="home" placeholder="xxx"/}
 {/extend}
