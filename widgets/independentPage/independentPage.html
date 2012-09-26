@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{pageTitle}</title>
+    <title>Separate original page</title>
   </head>
   <body>
-    {#widget type="//SmartWidget" who="^number"}
+    {#widget type="//MainLayout" mainMenuItem="pages" name="sfsdf"}
       {#inline}
-        <p>Some content from smart page: {number}, {number}, {number}, {number}, {number}.</p>
+        Original page content.
       {/inline}
     {/widget}
     <script>window.jQuery || document.write('<script src="/vendor/jquery/jquery.js"><\/script>')</script>

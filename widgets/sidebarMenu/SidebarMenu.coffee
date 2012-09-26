@@ -2,10 +2,10 @@ define [
   'cord!Widget'
 ], (Widget) ->
 
-  class MainMenu extends Widget
+  class SidebarMenu extends Widget
 
     _defaultAction: (params, callback) ->
       @ctx.set
+        sections: params.sections
         activeItem: params.selectedItem
-        position: params.position
       callback()

@@ -1,8 +1,25 @@
-<style>
-  li.active { font-weight:bold; }
-</style>
-<ul>
-  <li id="home"{@if cond="('{activeItem}' == 'home')"} class="active"{/if}><a href="/example/">Home</a></li>
-  <li id="about"{@if cond="('{activeItem}' == 'about')"} class="active"{/if}><a href="/example/about/David">About David</a></li>
-  <li id="aboutJohn"{@if cond="('{activeItem}' == 'aboutJohn')"} class="active"{/if}><a href="/example/about/John">About John</a></li>
-</ul>
+<div class="navbar navbar-inverse{@if cond="('{position}' == 'top')"} navbar-fixed-top{/if}">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">Cord.js</a>
+      <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right">
+          Logged in as <a href="#" class="navbar-link">Username</a>
+        </p>
+        <ul class="nav">
+          <li id="home"{@if cond="('{activeItem}' == 'home')"} class="active"{/if}><a href="/example/">Home</a></li>
+          <li id="pages"{@if cond="('{activeItem}' == 'pages')"} class="active"{/if}><a href="/example/pages/">Pages</a></li>
+          <li id="layouts"{@if cond="('{activeItem}' == 'layouts')"} class="active"{/if}><a href="/example/layouts/">Layouts</a></li>
+          <li id="widgets"{@if cond="('{activeItem}' == 'widgets')"} class="active"{/if}><a href="/example/widgets/">Widgets</a></li>
+          <li id="about"{@if cond="('{activeItem}' == 'about')"} class="active"{/if}><a href="/example/about/">About</a></li>
+          <li ><a href="/contact/">Contact</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>

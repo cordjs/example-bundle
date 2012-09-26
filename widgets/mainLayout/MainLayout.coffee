@@ -7,5 +7,9 @@ define [
     behaviourClass: false
 
     _defaultAction: (params, callback) ->
-      @ctx.setSingle 'mainMenuItem', params.mainMenuItem
+      today = new Date
+      curYear = today.getFullYear()
+      @ctx.set
+        mainMenuItem: params.mainMenuItem
+        currentYear: if curYear > 2012 then curYear else null
       callback()

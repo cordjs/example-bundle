@@ -1,0 +1,12 @@
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    {#sections}
+      <li class="nav-header">{name}</li>
+      {#items widgetId=id}
+        <li{@if cond="('{id}' == '{activeItem}')"} class="active"{/if} id="{widgetId}-{id}">
+          <a href="{url}">{name}</a>
+        </li>
+      {/items}
+    {/sections}
+  </ul>
+</div><!--/.well -->
