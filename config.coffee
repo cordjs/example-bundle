@@ -13,6 +13,9 @@ define [], () ->
     '/example/pages/list/':
       widget: '//UserListPage'
 
+    '/example/pages/list/addUser/':
+      widget: '//AddUserInListPage'
+
     '/example/about/:someName':
       widget: '//AboutPage'
       params:
