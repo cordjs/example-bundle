@@ -5,6 +5,7 @@ define [
   class HomePage extends Widget
 
     behaviourClass: false
+    css: true
 
     _defaultAction: (params, callback) ->
 
