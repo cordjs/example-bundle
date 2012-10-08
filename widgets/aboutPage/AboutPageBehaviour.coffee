@@ -8,4 +8,4 @@ define [
       'who': 'onWhoChange'
 
     onWhoChange: (data) =>
-      #@render()
+      @renderInline 'content'
