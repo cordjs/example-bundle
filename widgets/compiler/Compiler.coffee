@@ -13,7 +13,8 @@ define [
         'cord!widgetCompiler'
       ], (WidgetClass, widgetCompiler) =>
 
-        widget = new WidgetClass true
+        widget = new WidgetClass
+          compileMode: true
         widgetCompiler.reset widget
         widget.compileTemplate (err, output) =>
           if err then throw err
