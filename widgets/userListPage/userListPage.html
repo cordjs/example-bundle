@@ -11,16 +11,15 @@
         </tr>
       </thead>
       <tbody>
+      {#deferred params="users"}
+        {#users}
         <tr>
           <td><input type="checkbox"></td>
-          <td>John Smith</td>
-          <td>25</td>
+          <td>{name}</td>
+          <td>{age}</td>
         </tr>
-        <tr>
-          <td><input type="checkbox"></td>
-          <td>Mr. White</td>
-          <td>30</td>
-        </tr>
+        {/users}
+      {/deferred}
       </tbody>
     </table>
   {/inline}
