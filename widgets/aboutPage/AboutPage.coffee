@@ -8,5 +8,4 @@ define [
       @ctx.set
         who: params.someName
         inlineMenuItem: 'aboutDavid'
-#      @ctx.setSingle 'who', params.characterName
       callback()

@@ -6,7 +6,7 @@ define [
 
     _defaultAction: (params, callback) ->
 
-      @ctx.setDeferred 'users'
+      @ctx.setDeferred 'users', 'menuItem'
 
       setTimeout =>
         @ctx.setSingle 'users', [
@@ -19,6 +19,8 @@ define [
           name: 'Alex Galchenkov'
           age: 30
         ]
+      , 500
+      setTimeout =>
+        @ctx.setSingle 'menuItem', 'list'
       , 200
-
       callback()
