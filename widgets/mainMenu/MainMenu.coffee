@@ -4,8 +4,11 @@ define [
 
   class MainMenu extends Widget
 
+    cssClass: "navbar navbar-inverse"
+
     _defaultAction: (params, callback) ->
       @ctx.set
         activeItem: params.selectedItem
-        position: params.position
+      @cssClass += ' navbar-fixed-top' if params.position == 'top'
+
       callback()
