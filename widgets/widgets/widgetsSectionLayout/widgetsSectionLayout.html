@@ -1,0 +1,8 @@
+{#extend type="//MainBaseLayout" mainMenuItem="widgets"}
+  {#widget type="//TwoPaneLayout"}
+    {#widget type="//SidebarMenu" sections="^menuItems" selectedItem="^leftMenuItem" placeholder="leftPane" /}
+    {#inline placeholder="rightPane"}
+      {#placeholder/}
+    {/inline}
+  {/widget}
+{/extend}
