@@ -11,11 +11,11 @@
         Logged in as <a href="#" class="navbar-link">Username</a>
       </p>
       <ul class="nav">
-        <li id="home"{@if cond="('{activeItem}' == 'home')"} class="active"{/if}><a href="/example/">Home</a></li>
-        <li id="pages"{@if cond="('{activeItem}' == 'pages')"} class="active"{/if}><a href="/example/pages/">Pages</a></li>
-        <li id="layouts"{@if cond="('{activeItem}' == 'layouts')"} class="active"{/if}><a href="/example/layouts/">Layouts</a></li>
-        <li id="widgets"{@if cond="('{activeItem}' == 'widgets')"} class="active"{/if}><a href="/example/widgets/">Widgets</a></li>
-        <li id="about"{@if cond="('{activeItem}' == 'about')"} class="active"{/if}><a href="/example/about/">About</a></li>
+        <li id="{id}-home"{@if cond="('{activeItem}' == 'home')"} class="active"{/if}><a href="/example/">Home</a></li>
+        <li id="{id}-pages"{@if cond="('{activeItem}' == 'pages')"} class="active"{/if}><a href="/example/pages/">Pages</a></li>
+        <li id="{id}-layouts"{@if cond="('{activeItem}' == 'layouts')"} class="active"{/if}><a href="/example/layouts/">Layouts</a></li>
+        <li id="{id}-widgets"{@if cond="('{activeItem}' == 'widgets')"} class="active"{/if}><a href="/example/widgets/">Widgets</a></li>
+        <li id="{id}-about"{@if cond="('{activeItem}' == 'about')"} class="active"{/if}><a href="/example/about/">About</a></li>
         <li ><a href="/contact/">Contact</a></li>
       </ul>
     </div><!--/.nav-collapse -->

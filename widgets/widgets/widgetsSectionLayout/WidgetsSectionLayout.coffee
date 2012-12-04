@@ -5,27 +5,31 @@ define [
   class WidgetsSectionLayout extends Widget
     behaviourClass: false
 
-    _defaultAction: (params, callback) ->
-      @ctx.set
-        menuItems: [
-          name: 'Navigate'
-          items: [
-            id: 'sectionHome'
-            name: 'Section Home'
-            url: '/example/widgets/'
-          ]
-        ,
-          name: 'Pages'
-          items: [
-            id: 'dynamic'
-            name: 'Dynamic Widget Add'
-            url: '/example/widgets/dynamic/'
-          ,
-            id: 'another'
-            name: 'Another Widget Example (fake)'
-            url: '/example/widgets/another/'
-          ]
-        ]
-        leftMenuItem: params.leftMenuItem
+    @params:
+      leftMenuItem: ':ctx'
 
-      callback()
+    @initialCtx:
+      menuItems: [
+        name: 'Navigate'
+        items: [
+          id: 'sectionHome'
+          name: 'Section Home'
+          url: '/example/widgets/'
+        ]
+      ,
+        name: 'Pages'
+        items: [
+          id: 'dynamic'
+          name: 'Dynamic Widget Add'
+          url: '/example/widgets/dynamic/'
+        ,
+          id: 'structure'
+          name: 'Widget Structure Example'
+          url: '/example/widgets/structure/'
+        ,
+          id: 'another'
+          name: 'Another Widget Example (fake)'
+          url: '/example/widgets/another/'
+        ]
+      ]
+      leftMenuItem: null

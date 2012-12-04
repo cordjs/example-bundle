@@ -6,10 +6,16 @@ define [
 
   class Compiler extends Widget
 
-    _defaultAction: (params, callback) ->
-      widgetName = params.name
+    @initialCtx:
+      structure: null
+
+    @params:
+      name: 'compileWidget'
+
+    compileWidget: (name) ->
+      @ctx.setDeferred 'structure'
       require [
-        "cord-w!#{ widgetName }"
+        "cord-w!#{ name }"
         'cord!widgetCompiler'
       ], (WidgetClass, widgetCompiler) =>
 
@@ -28,4 +34,3 @@ define [
 
           widgetCompiler.printStructure()
           @ctx.setSingle 'structure', widgetCompiler.getStructureCode(false)
-          callback()

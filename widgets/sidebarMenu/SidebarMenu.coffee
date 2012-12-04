@@ -4,8 +4,10 @@ define [
 
   class SidebarMenu extends Widget
 
-    _defaultAction: (params, callback) ->
-      @ctx.set
-        sections: params.sections
-        activeItem: params.selectedItem
-      callback()
+    @initialCtx:
+      sections: []
+      activeItem: null
+
+    @params:
+      sections: ':ctx'
+      selectedItem: ':ctx.activeItem'

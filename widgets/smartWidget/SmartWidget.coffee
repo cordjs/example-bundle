@@ -6,7 +6,5 @@ define [
 
     behaviourClass: false
 
-    _defaultAction: (params, callback) ->
-      @ctx.set
-        who: params.who
-      callback()
+    @params:
+      who: ':ctx'

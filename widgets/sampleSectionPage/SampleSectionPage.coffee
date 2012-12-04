@@ -5,8 +5,8 @@ define [
   class SampleSectionPage extends Widget
     behaviourClass: false
 
-    _defaultAction: (params, callback) ->
-      @ctx.setSingle 'menuItems', [
+    @initialCtx:
+      menuItems: [
         name: 'Navigate'
         items: [
           id: 'sectionHome'
@@ -29,5 +29,3 @@ define [
           url: '/example/pages/form/'
         ]
       ]
-
-      callback()

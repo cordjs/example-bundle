@@ -6,8 +6,11 @@ define [
 
     behaviourClass: false
 
-    _defaultAction: (params, callback) ->
-      @ctx.set
-        pageTitle: params.pageTitle
-        mainMenuItem: params.mainMenuItem
-      callback()
+    @initialCtx:
+      pageTitle: 'Change Me'
+      mainMenuItem: null
+
+    @params:
+      pageTitle: ':ctx'
+      mainMenuItem: ':ctx'
+

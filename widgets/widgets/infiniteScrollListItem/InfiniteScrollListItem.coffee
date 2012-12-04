@@ -7,11 +7,10 @@ define [
     cssClass: 'b-infinite-scroll-list-item'
     css: true
 
-    _defaultAction: (params, callback) ->
-      @ctx.setDeferred 'number'
-      setTimeout =>
-        @ctx.set
-          number: params.number
-      , 100
-
-      callback()
+    @params:
+      number: (number) ->
+        @ctx.setDeferred 'number'
+        setTimeout =>
+          @ctx.set
+            number: number
+        , 100

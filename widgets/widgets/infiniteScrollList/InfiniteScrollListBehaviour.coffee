@@ -27,7 +27,7 @@ define [
       scrollHeight = @$scrollBox.prop('scrollHeight')
 
       if scrollHeight <= height and bottomY < height + 100
-        @widget.fireAction 'addItem'
+        @widget.addItem()
 
 
     onItemsChange: (data) ->
@@ -50,5 +50,5 @@ define [
       height = @el.height()
       scrollHeight = @$scrollBox.prop('scrollHeight')
       if height + scrollTop > scrollHeight
-        @widget.fireAction 'addItem'
+        @widget.addItem()
 

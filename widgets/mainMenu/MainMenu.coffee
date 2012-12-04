@@ -6,9 +6,10 @@ define [
 
     cssClass: "navbar navbar-inverse"
 
-    _defaultAction: (params, callback) ->
-      @ctx.set
-        activeItem: params.selectedItem
-      @cssClass += ' navbar-fixed-top' if params.position == 'top'
+    @initialCtx:
+      activeItem: null
 
-      callback()
+    @params:
+      selectedItem: ':ctx.activeItem'
+      position: (position) ->
+        @cssClass += ' navbar-fixed-top' if position == 'top'

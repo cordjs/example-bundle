@@ -4,8 +4,9 @@ define [
 
   class AboutPage extends Widget
 
-    _defaultAction: (params, callback) ->
-      @ctx.set
-        who: params.someName
-        inlineMenuItem: 'aboutDavid'
-      callback()
+    @initialCtx:
+      inlineMenuItem: 'aboutDavid'
+      who: ''
+
+    @params:
+      someName: ':ctx.who'

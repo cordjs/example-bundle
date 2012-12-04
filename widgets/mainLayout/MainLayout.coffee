@@ -6,10 +6,12 @@ define [
 
     behaviourClass: false
 
-    _defaultAction: (params, callback) ->
-      today = new Date
-      curYear = today.getFullYear()
-      @ctx.set
-        mainMenuItem: params.mainMenuItem
-        currentYear: if curYear > 2012 then curYear else null
-      callback()
+    @initialCtx:
+      currentYear: ->
+        today = new Date
+        curYear = today.getFullYear()
+        if curYear > 2012 then curYear else null
+      mainMenuItem: null
+
+    @params:
+      mainMenuItem: ':ctx'

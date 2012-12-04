@@ -4,8 +4,12 @@ define [
 
   class UserListPage extends Widget
 
-    _defaultAction: (params, callback) ->
+    @initialCtx:
+      users: []
+      menuItem: null
 
+
+    onShow: ->
       @ctx.setDeferred 'users', 'menuItem'
 
       setTimeout =>
@@ -23,4 +27,3 @@ define [
       setTimeout =>
         @ctx.setSingle 'menuItem', 'list'
       , 200
-      callback()

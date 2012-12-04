@@ -10,4 +10,4 @@ define [
 
     onActiveItemChange: (data) =>
       @$('.active').removeClass 'active'
-      $("##{ data.value }").addClass 'active'
+      $("##{ @id }-#{ data.value }").addClass 'active'
