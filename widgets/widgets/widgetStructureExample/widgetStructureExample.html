@@ -1,0 +1,21 @@
+<h1>This is new widget structure example page</h1>
+<p>Pair1 counter = <span class="j-counter">{p1counter}</span></p>
+<p>Age (int validated param) = <span class="j-age">{age}</span></p>
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li{@if cond="('{activeTab}' == 'first')"} class="active"{/if} id="{id}-first">
+      <a href="/example/widgets/structure/tab1">First (p1 and p2)</a>
+    </li>
+    <li{@if cond="('{activeTab}' == 'second')"} class="active"{/if} id="{id}-second">
+      <a href="/example/widgets/structure/tab2">Second (p1)</a>
+    </li>
+    <li{@if cond="('{activeTab}' == 'third')"} class="active"{/if} id="{id}-third">
+      <a href="/example/widgets/structure/tab3">Third (p2)</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active ">
+      {#widget type="//widgets/widgetStructureExample/TabContent" p1="^p1val" p2="^p2val" text="^tabContentString" /}
+    </div>
+  </div>
+</div>

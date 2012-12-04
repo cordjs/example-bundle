@@ -6,6 +6,7 @@ define [
 
     widgetEvents:
       'activeItem': 'onActiveItemChange'
+      'sections': 'render'
 
     onActiveItemChange: (data) ->
       @$('.active').removeClass 'active'
