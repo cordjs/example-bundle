@@ -1,0 +1,6 @@
+{#extend type="//widgets/WidgetsSectionLayout" leftMenuItem="timeout"}
+  {#widget type="//widgets/DelayedList" list="^list" timeout="100"}
+  {:placeholder}
+    <p>Loading list. Please wait</p>
+  {/widget}
+{/extend}

@@ -27,9 +27,9 @@ define [
           name: 'Widget Structure Example'
           url: '/example/widgets/structure/'
         ,
-          id: 'another'
-          name: 'Another Widget Example (fake)'
-          url: '/example/widgets/another/'
+          id: 'timeout'
+          name: 'Timeout Placeholder Example'
+          url: '/example/widgets/timeout/'
         ]
       ]
       leftMenuItem: null

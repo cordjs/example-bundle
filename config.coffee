@@ -44,6 +44,9 @@ define [], () ->
       params:
         p2: 'tab3b'
 
+    '/example/widgets/timeout/':
+      widget: '//widgets/TimeoutPlaceholderPage'
+
     '/example/about/:someName':
       widget: '//AboutPage'
 
