@@ -13,11 +13,7 @@
       <tbody>
       {#deferred params="users"}
         {#users}
-        <tr>
-          <td><input type="checkbox"></td>
-          <td>{name}</td>
-          <td>{age}</td>
-        </tr>
+          {#widget type="//pages/UserListItem" name=name age=age /}
         {/users}
       {/deferred}
       </tbody>
