@@ -11,7 +11,7 @@ define [], () ->
       widget: '//IndependentPage'
 
     '/example/pages/list/':
-      widget: '//UserListPage'
+      widget: '//pages/UserListPage'
 
     '/example/pages/list/addUser/':
       widget: '//AddUserInListPage'
