@@ -4,8 +4,6 @@ define [
 
   class DelayedList extends Widget
 
-    behaviourClass: false
-
     @initialCtx:
       items: []
 
