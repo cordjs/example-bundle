@@ -1,0 +1,10 @@
+{#extend type="//widgets/WidgetsSectionLayout" leftMenuItem="event"}
+  {#inline}
+    <p>Button state is <span class="j-state badge">{buttonState}</span></p>
+
+    <p>The widget "ToggleButton" with name "my-button" below will emit event with topic "change.state" every time it become pressed on unpressed.</p>
+    <p>Page widget is subscribed to the child widget's event "change.state" and modifies "buttonState" context variable. That leads to changing badge in the text above by the page widget's behaviour class.</p>
+
+    {#widget type="//widgets/ToggleButton" name="my-button" label="Toggle Button" /}
+  {/inline}
+{/extend}

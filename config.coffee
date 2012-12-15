@@ -47,6 +47,9 @@ define [], () ->
     '/example/widgets/timeout/':
       widget: '//widgets/TimeoutPlaceholderPage'
 
+    '/example/widgets/event/':
+      widget: '//widgets/EventExamplePage'
+
     '/example/about/:someName':
       widget: '//AboutPage'
 

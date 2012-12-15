@@ -30,6 +30,10 @@ define [
           id: 'timeout'
           name: 'Timeout Placeholder Example'
           url: '/example/widgets/timeout/'
+        ,
+          id: 'event'
+          name: 'Event Example'
+          url: '/example/widgets/event/'
         ]
       ]
       leftMenuItem: null
