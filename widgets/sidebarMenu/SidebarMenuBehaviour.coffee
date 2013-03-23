@@ -5,8 +5,8 @@ define [
   class SidebarMenuBehaviour extends Behaviour
 
     widgetEvents:
-      'activeItem': 'onActiveItemChange'
-      'sections': 'render'
+      activeItem: 'onActiveItemChange'
+      sections: 'render'
 
     onActiveItemChange: (data) ->
       @$('.active').removeClass 'active'

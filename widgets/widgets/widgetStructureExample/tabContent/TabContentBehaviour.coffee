@@ -5,6 +5,6 @@ define [
   class TabContentBehaviour extends Behaviour
 
     widgetEvents:
-      'text': 'render'
-      'param1': 'render'
-      'param2': 'render'
+      text: 'render'
+      param1: 'render'
+      param2: 'render'
