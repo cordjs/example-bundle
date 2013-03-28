@@ -10,3 +10,7 @@ define [
 
     @params:
       someName: ':ctx.who'
+
+    cssClass: 'b-about-page'
+
+    css: true
