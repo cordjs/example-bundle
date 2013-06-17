@@ -28,18 +28,18 @@ define [], () ->
         p1: null
         p2: null
 
-    '/example/widgets/structure/tab1':
+    '/example/widgets/structure/tab1/':
       widget: '//widgets/WidgetStructurePage'
       params:
         p1: 'tab1a'
         p2: 'tab1b'
 
-    '/example/widgets/structure/tab2':
+    '/example/widgets/structure/tab2/':
       widget: '//widgets/WidgetStructurePage'
       params:
         p1: 'tab2a'
 
-    '/example/widgets/structure/tab3':
+    '/example/widgets/structure/tab3/':
       widget: '//widgets/WidgetStructurePage'
       params:
         p2: 'tab3b'
@@ -50,7 +50,10 @@ define [], () ->
     '/example/widgets/event/':
       widget: '//widgets/EventExamplePage'
 
-    '/example/about/:someName':
+    '/example/about/':
+      widget: '//AboutPage'
+
+    '/example/about/:someName/':
       widget: '//AboutPage'
 
     '/example/smartPage/:number/':

@@ -12,18 +12,14 @@ define [
     onShow: ->
       @ctx.setDeferred 'users', 'menuItem'
 
-      setTimeout =>
-        @ctx.setSingle 'users', [
-          name: 'John Smith'
-          age: 25
-        ,
-          name: 'Mr. White'
-          age: 30
-        ,
-          name: 'Alex Galchenkov'
-          age: 30
-        ]
-      , 500
-      setTimeout =>
-        @ctx.setSingle 'menuItem', 'list'
-      , 200
+      @ctx.set 'users', [
+        name: 'John Smith'
+        age: 25
+      ,
+        name: 'Mr. White'
+        age: 30
+      ,
+        name: 'Alex Galchenkov'
+        age: 30
+      ]
+      @ctx.set 'menuItem', 'list'
