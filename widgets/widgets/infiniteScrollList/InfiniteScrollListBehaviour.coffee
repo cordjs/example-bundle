@@ -5,9 +5,6 @@ define [
 
   class InfiniteScrollListBehaviour extends Behaviour
 
-    @events:
-      'init': 'onInit'
-
     @widgetEvents:
       'items': 'onItemsChange'
 
@@ -15,7 +12,7 @@ define [
       'div.scroll': '$scrollBox'
 
 
-    onInit: ->
+    init: ->
       @$scrollBox.scroll (evt) =>
         @onScroll(evt)
       @fillScrollArea()
@@ -35,8 +32,6 @@ define [
 
       for info in add
         do (info) =>
-          #@widget.createChildWidget '//widgets/InfiniteScrollListItem', (newItem) =>
-          #  @renderNewWidget newItem, number: info.number, ($el) =>
           @initChildWidget '//widgets/InfiniteScrollListItem', number: info.number, ($el) =>
             if parseInt(Math.random() * 100 % 2) == 0
               $el.appendTo @$scrollBox

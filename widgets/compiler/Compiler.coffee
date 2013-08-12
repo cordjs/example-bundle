@@ -1,8 +1,8 @@
 define [
   'cord!Widget'
   'fs'
-  'cord!configPaths'
-], (Widget, fs, configPaths) ->
+  'pathUtils'
+], (Widget, fs, pathUtils) ->
 
   class Compiler extends Widget
 
@@ -26,8 +26,8 @@ define [
           if err then throw err
 
           # todo: detect bundles or vendor dir correctly
-          console.log "PUBLIC_PREFIX == #{ configPaths.PUBLIC_PREFIX }"
-          tmplFullPath = "./#{ configPaths.PUBLIC_PREFIX }/bundles/#{ widget.getTemplatePath() }.structure.json"
+          console.log "PUBLIC_PREFIX == #{ pathUtils.getPublicPrefix() }"
+          tmplFullPath = "./#{ pathUtils.getPublicPrefix() }/bundles/#{ widget.getTemplatePath() }.structure.json"
           fs.writeFile tmplFullPath, widgetCompiler.getStructureCode(false), (err)->
             if err then throw err
             console.log "template saved #{ tmplFullPath }"
