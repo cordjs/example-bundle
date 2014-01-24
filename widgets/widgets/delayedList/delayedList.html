@@ -11,12 +11,22 @@
 </table>
 {/items}
 
-{#widget type="//widgets/delayedList/DelayedButton" delay="2000" name="button1" timeout="500"}
+{#widget type="//widgets/delayedList/DelayedButton" delay="1300" name="button1" timeout="900"}
 {:timeout}
   waiting...
 {/widget}
 
-{#widget type="//widgets/delayedList/DelayedButton" delay="^delayForButton" name="button2" timeout="0"}
+<br/>
+
+{#widget type="//widgets/delayedList/DelayedButton" delay="^delayForButton1" name="button2" timeout="50" /}
+
+<br/>
+
+{#widget type="//widgets/delayedList/ExtendedButton" delay="1500" name="button3" timeout="1000"}
 {:timeout}
-  waiting second button...
+  waiting...
 {/widget}
+
+<br/>
+
+{#widget type="//widgets/delayedList/ExtendedButton" delay="^delayForButton2" name="button4" timeout="500" /}
