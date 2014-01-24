@@ -10,3 +10,13 @@
   </tbody>
 </table>
 {/items}
+
+{#widget type="//widgets/delayedList/DelayedButton" delay="2000" name="button1" timeout="500"}
+{:timeout}
+  waiting...
+{/widget}
+
+{#widget type="//widgets/delayedList/DelayedButton" delay="^delayForButton" name="button2" timeout="0"}
+{:timeout}
+  waiting second button...
+{/widget}

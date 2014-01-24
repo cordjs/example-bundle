@@ -6,6 +6,11 @@ define [
 
     @initialCtx:
       items: []
+      delayForButton: ':deferred'
 
     @params:
-      list: ':ctx.items'
+      list: (items) ->
+        @ctx.set items: items
+        setTimeout =>
+          @ctx.set delayForButton: 0
+        , 3000
