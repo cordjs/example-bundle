@@ -20,5 +20,4 @@ define [
           id: 2
           name: 'Medved'
         ]
-      , 2000
-
+      , 100

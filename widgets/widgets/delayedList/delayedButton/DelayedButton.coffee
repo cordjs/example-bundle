@@ -4,8 +4,6 @@ define [
 
   class DelayedButton extends Widget
 
-    behaviourClass: false
-
     @initialCtx:
       threshold: ':deferred'
 

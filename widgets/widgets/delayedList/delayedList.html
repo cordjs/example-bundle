@@ -11,20 +11,20 @@
 </table>
 {/items}
 
-{#widget type="//widgets/delayedList/DelayedButton" delay="1300" name="button1" timeout="900"}
+{#widget type="//widgets/delayedList/DelayedButton" delay="1300" name="button1" timeout="900" /}
+
+<br/>
+
+{#widget type="//widgets/delayedList/DelayedButton" delay="^delayForButton1" name="button2" timeout="50"}
 {:timeout}
   waiting...
 {/widget}
 
 <br/>
 
-{#widget type="//widgets/delayedList/DelayedButton" delay="^delayForButton1" name="button2" timeout="50" /}
-
-<br/>
-
-{#widget type="//widgets/delayedList/ExtendedButton" delay="1500" name="button3" timeout="1000"}
+{#widget type="//widgets/delayedList/ExtendedButton" delay="1500" name="button3" timeout="100"}
 {:timeout}
-  waiting...
+  waiting extended...
 {/widget}
 
 <br/>

@@ -15,4 +15,4 @@ define [
         setTimeout =>
           @ctx.set delayForButton1: Math.ceil(Math.random() * 1000000 % 1500)
           @ctx.set delayForButton2: Math.ceil(Math.random() * 1000000 % 3000)
-        , Math.ceil(Math.random() * 1000000 % 3000)
+        , 1000 + Math.ceil(Math.random() * 1000000 % 3000)
