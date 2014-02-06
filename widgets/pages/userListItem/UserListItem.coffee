@@ -10,5 +10,5 @@ define [
       age: 0
 
     @params:
-      name: ':ctx'
+      uname: ':ctx.name'
       age: ':ctx'
