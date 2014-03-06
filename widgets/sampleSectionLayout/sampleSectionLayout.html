@@ -1,8 +1,6 @@
 {#extend type="//MainBaseLayout" mainMenuItem="pages"}
   {#widget type="//TwoPaneLayout" class="red"}
     {#widget type="//SidebarMenu" sections="^menuItems" selectedItem="^leftMenuItem" placeholder="leftPane" /}
-    {#inline placeholder="rightPane"}
-      {#placeholder/}
-    {/inline}
+    {#placeholder placeholder="rightPane"/}
   {/widget}
 {/extend}
