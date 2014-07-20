@@ -9,11 +9,11 @@ define [
       'items': 'onItemsChange'
 
     @elements:
-      'div.scroll': '$scrollBox'
+      'div.scroll': 'scrollBox'
 
 
     init: ->
-      @$scrollBox.scroll (evt) =>
+      @scrollBox.scroll (evt) =>
         @onScroll(evt)
       @fillScrollArea()
 
@@ -21,7 +21,7 @@ define [
     fillScrollArea: ->
       bottomY = @el.find('.b-infinite-scroll-list-item:last').position().top
       height = @el.height()
-      scrollHeight = @$scrollBox.prop('scrollHeight')
+      scrollHeight = @scrollBox.prop('scrollHeight')
 
       if scrollHeight <= height and bottomY < height + 100
         @widget.addItem()
@@ -32,18 +32,19 @@ define [
 
       for info in add
         do (info) =>
-          @initChildWidget '//widgets/InfiniteScrollListItem', number: info.number, ($el) =>
-            if parseInt(Math.random() * 100 % 2) == 0
-              $el.appendTo @$scrollBox
-            else
-              $el.prependTo @$scrollBox
+          @insertChildWidget '//widgets/InfiniteScrollListItem',
+            number: info.number
+            ':position': if parseInt(Math.random() * 100 % 2) then 'prepend' else 'append'
+            ':context': @scrollBox
+          .then =>
             @fillScrollArea()
+          .failAloud()
 
 
-    onScroll: (e) ->
-      scrollTop = @$scrollBox.scrollTop()
+    onScroll: ->
+      scrollTop = @scrollBox.scrollTop()
       height = @el.height()
-      scrollHeight = @$scrollBox.prop('scrollHeight')
+      scrollHeight = @scrollBox.prop('scrollHeight')
       if height + scrollTop > scrollHeight
         @widget.addItem()
 
