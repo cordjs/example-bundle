@@ -7,7 +7,6 @@ define [
     rootTag: 'button'
     cssClass: 'btn'
 
-
     @initialCtx:
       label: 'Button'
       pressed: false
@@ -16,8 +15,11 @@ define [
       label: ':ctx'
       state: (state) -> @ctx.set pressed: state == 'on'
 
+
     onShow: ->
-      @cssClass += ' active' if @ctx.pressed
+      @addDynClass('active btn-success') if @ctx.pressed
+      @emit 'super', @cssClass
+
 
     toggleState: ->
       @ctx.set pressed: not @ctx.pressed
