@@ -34,6 +34,10 @@ define [
           id: 'event'
           name: 'Event Example'
           url: '/example/widgets/event/'
+        ,
+          id: 'vdom'
+          name: 'Virtual DOM R&D'
+          url: '/example/widgets/vdom/'
         ]
       ]
       leftMenuItem: null

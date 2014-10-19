@@ -50,6 +50,9 @@ define ->
     '/example/widgets/event/':
       widget: '//widgets/EventExamplePage'
 
+    '/example/widgets/vdom/':
+      widget: '//widgets/vdom/VdomExamplePage'
+
     '/example/about/':
       widget: '//AboutPage'
 
