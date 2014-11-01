@@ -1,7 +1,7 @@
 define [
   'cord!Widget'
   'cord!utils/Future'
-  'virtual-dom-stringify'
+  'cord!vdom/vstringify/stringify'
 ], (Widget, Future, stringify) ->
 
   class VdomTestWidget extends Widget
