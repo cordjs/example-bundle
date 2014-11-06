@@ -11,7 +11,15 @@ define [
 
     show: ->
       vdomTmplFile = "bundles/#{ @getDir() }/#{ @constructor.dirName }.vdom"
+
+      calc = {}
+      @onRender?(calc)
+
       Future.require(vdomTmplFile).then (renderFn) ->
-        renderFn().map (vtree) ->
+        renderFn(null, null, calc).map (vtree) ->
           stringify(vtree)
         .join('')
+
+
+    onRender: (calc) ->
+      calc.digit = 36.7
