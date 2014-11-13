@@ -4,5 +4,4 @@ define [
 
   class VdomSandbox extends Widget
 
-    behaviourClass: false
     css: true
