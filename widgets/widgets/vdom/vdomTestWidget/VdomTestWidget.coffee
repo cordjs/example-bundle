@@ -4,8 +4,9 @@ define [
   'cord!utils/Future'
   'cord!vdom/vstringify/stringify'
   'cord!vdom/vtree/diff'
+  'cord!vdom/vpatch/patch'
   'underscore'
-], (Widget, Utils, Future, stringify, diff, _) ->
+], (Widget, Utils, Future, stringify, diff, patch, _) ->
 
   class VdomTestWidget extends Widget
 
@@ -17,7 +18,7 @@ define [
 
 
     @initialState
-      digit: 0
+      digit: 1
 
 
     show: ->
@@ -49,10 +50,11 @@ define [
 
 
     render: ->
-      @_renderVtree().then (newVtree) ->
-        console.log "render", newVtree
+      @_renderVtree().then (newVtree) =>
         patches = diff(@_vtree, newVtree)
-        patch(@_rootElement, patches)
+        rootElement = document.getElementById('w' + @ctx.id.split('-')[1])
+        patch(rootElement, patches)
+      .failAloud()
 
 
     _renderVtree: ->
@@ -79,5 +81,4 @@ define [
 
 
     updateDigit: ->
-      console.log "updateDigit"
       @setState digit: Math.random() * 10
