@@ -11,6 +11,8 @@ define [
   class VdomTestWidget extends Widget
 
     behaviourClass: false
+    css: true
+    cssClass: 'vdom-test'
 
     @initialState: (state) ->
       @_initialState ?= {}
@@ -19,6 +21,7 @@ define [
 
     @initialState
       digit: 1
+      inputClass: 'no-border'
 
 
     show: ->
@@ -54,6 +57,7 @@ define [
         patches = diff(@_vtree, newVtree)
         rootElement = document.getElementById('w' + @ctx.id.split('-')[1])
         patch(rootElement, patches)
+        @_vtree = newVtree
       .failAloud()
 
 
@@ -65,7 +69,7 @@ define [
       props =
         id: 'w' + @ctx.id.split('-')[1]
 
-      Future.require(vdomTmplFile).then (renderFn) ->
+      Future.require(vdomTmplFile).then (renderFn) =>
         renderFn(props, @state, calc)
 
 
@@ -82,3 +86,7 @@ define [
 
     updateDigit: ->
       @setState digit: Math.random() * 10
+      if @state.digit > 5
+        @setState inputClass: 'with-border'
+      else
+        @setState inputClass: 'no-border'
