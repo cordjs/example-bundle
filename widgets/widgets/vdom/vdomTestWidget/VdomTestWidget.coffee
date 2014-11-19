@@ -4,9 +4,10 @@ define [
   'cord!utils/Future'
   'cord!vdom/vstringify/stringify'
   'cord!vdom/vtree/diff'
+  'cord!vdom/vpatch/createElement'
   'cord!vdom/vpatch/patch'
   'underscore'
-], (Widget, Utils, Future, stringify, diff, patch, _) ->
+], (Widget, Utils, Future, stringify, diff, createElement, patch, _) ->
 
   class VdomTestWidget extends Widget
 
@@ -26,9 +27,31 @@ define [
 
     show: ->
       @ctx.state = @state = Utils.cloneLevel2(@constructor._initialState)
-      @_renderVtree().then (vtree) ->
-        stringify(vtree)
+      @_renderVtree().then (vtree) =>
+        if CORD_IS_BROWSER
+          el = createElement(vtree)
+          @_waitShimRoot().then (shimEl) ->
+            shimEl.appendChild(el)
+          ''
+        else
+          stringify(vtree)
       .failAloud()
+
+
+    _waitShimRoot: ->
+      @_shimPromise = Future.single()
+
+
+    browserInit: (stopPropagateWidget, $domRoot) ->
+      if stopPropagateWidget? and not (stopPropagateWidget instanceof Widget)
+        $domRoot = stopPropagateWidget
+        stopPropagateWidget = undefined
+
+      target = $domRoot.find('#' + @ctx.id)
+      if target.size() == 1
+        @_shimPromise.resolve(target[0])
+      else
+        @_shimPromise.reject(new Error("Invalid root element #{target}"))
 
 
     initBehaviour: ->
