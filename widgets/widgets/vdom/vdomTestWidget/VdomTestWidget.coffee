@@ -4,12 +4,15 @@ define [
   'cord!utils/Future'
   'cord!vdom/vstringify/stringify'
   'cord!vdom/vtree/diff'
+  'cord!vdom/vtree/vtree'
   'cord!vdom/vpatch/createElement'
   'cord!vdom/vpatch/patch'
   'underscore'
-], (Widget, Utils, Future, stringify, diff, createElement, patch, _) ->
+], (Widget, Utils, Future, stringify, diff, vtree, createElement, patch, _) ->
 
   class VdomTestWidget extends Widget
+
+    @inject: ['widgetFactory']
 
     behaviourClass: false
     css: true
@@ -27,15 +30,16 @@ define [
 
     show: ->
       @ctx.state = @state = Utils.cloneLevel2(@constructor._initialState)
-      @_renderVtree().then (vtree) =>
-        if CORD_IS_BROWSER
+      (if CORD_IS_BROWSER
+        @_renderVtree().then (vtree) =>
           el = createElement(vtree)
           @_waitShimRoot().then (shimEl) ->
             shimEl.appendChild(el)
           ''
-        else
+      else
+        @renderDeepTree().then (vtree) ->
           stringify(vtree)
-      .failAloud()
+      ).failAloud()
 
 
     _waitShimRoot: ->
@@ -85,6 +89,10 @@ define [
 
 
     _renderVtree: ->
+      ###
+      Renders the widget's template to the virtual DOM tree, using current state and props
+      @return {Promise.<VNode>}
+      ###
       vdomTmplFile = "bundles/#{ @getDir() }/#{ @constructor.dirName }.vdom"
 
       calc = {}
@@ -94,6 +102,42 @@ define [
 
       Future.require(vdomTmplFile).then (renderFn) =>
         renderFn(props, @state, calc)
+
+
+    renderDeepTree: ->
+      ###
+      Renders the widget with dereferencing child widgets (rendering them to the simple VNodes) deeply.
+      @return {Promise.<VNode>}
+      ###
+      @_renderVtree().then (vnode) =>
+        @_recDereferenceTree(vnode)
+
+
+    _recDereferenceTree: (vnode) ->
+      ###
+      Recursively scans the given VNode and replaces VWidget occurences with the rendered widget VNode
+      @param {VNode} vnode
+      @return {Promise.<VNode>}
+      ###
+      if vtree.isWidget(vnode)
+        @_renderDeepVWidget(vnode)
+      else if vtree.isVNode(vnode)
+        promises = (@_recDereferenceTree(child) for child in vnode.children)
+        Future.all(promises).then (dereferencedChildren) ->
+          vnode.children = dereferencedChildren
+          vnode
+      else
+        Future.resolved(vnode)
+
+
+    _renderDeepVWidget: (vwidget) ->
+      ###
+      Renders (dereference) VWidget node and recursively dereference it's VTree.
+      @param {VWidget} vwidget
+      @return {Promise.<VNode>}
+      ###
+      @widgetFactory.create(vwidget.type, vwidget.props, vwidget.slotNodes).then (widget) ->
+        widget.renderDeepTree()
 
 
     _restoreCurrentVtree: ->
