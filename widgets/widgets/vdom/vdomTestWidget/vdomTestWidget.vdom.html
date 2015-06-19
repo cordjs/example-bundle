@@ -1,9 +1,9 @@
-<div>
+<div id={props.id}>
   <input value="123" className={state.inputClass}/>
   <input value="24" attributes={{'class': state.inputClass}}/>
   <button onclick="1" class="state.y">Text in <i>{calc.digit} </i>button</button>
 
-  <widget type="//widgets/vdom/vdomTestWidget/VdomChild"/>
+  <widget type="//widgets/vdom/vdomTestWidget/VdomChild" testProp={calc.digit}/>
 
   <slot name="default"/>
 

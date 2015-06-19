@@ -12,7 +12,10 @@ define [
 
   class VdomTestWidget extends Widget
 
-    @inject: ['widgetFactory']
+    @inject: [
+      'widgetFactory'
+      'vdomWidgetRepo'
+    ]
 
     behaviourClass: false
     css: true
@@ -31,7 +34,7 @@ define [
     show: ->
       @ctx.state = @state = Utils.cloneLevel2(@constructor._initialState)
       (if CORD_IS_BROWSER
-        @_renderVtree().then (vtree) =>
+        @renderDeepTree().then (vtree) =>
           el = createElement(vtree)
           @_waitShimRoot().then (shimEl) ->
             shimEl.appendChild(el)
@@ -83,7 +86,7 @@ define [
       @_renderVtree().then (newVtree) =>
         patches = diff(@_vtree, newVtree)
         rootElement = document.getElementById('w' + @ctx.id.split('-')[1])
-        patch(rootElement, patches)
+        patch(rootElement, patches, @vdomWidgetRepo)
         @_vtree = newVtree
       .failAloud()
 
@@ -136,7 +139,7 @@ define [
       @param {VWidget} vwidget
       @return {Promise.<VNode>}
       ###
-      @widgetFactory.create(vwidget.type, vwidget.props, vwidget.slotNodes).then (widget) ->
+      @widgetFactory.create(vwidget.type, vwidget.properties, vwidget.slotNodes, @getBundle()).then (widget) ->
         widget.renderDeepTree()
 
 
