@@ -13,8 +13,9 @@ define [
   class VdomTestWidget extends Widget
 
     @inject: [
-      'widgetFactory'
       'vdomWidgetRepo'
+      'widgetFactory'
+      'widgetHierarchy'
     ]
 
     behaviourClass: false
@@ -32,6 +33,7 @@ define [
 
 
     show: ->
+      @id = (if CORD_IS_BROWSER then 'b' else 'n') + @ctx.id.split('-')[1]  if not @id
       @ctx.state = @state = Utils.cloneLevel2(@constructor._initialState)
       (if CORD_IS_BROWSER
         @renderDeepTree().then (vtree) =>
@@ -63,7 +65,9 @@ define [
 
     initBehaviour: ->
       # dirty hack to restore state came from the server
-      @state = @ctx.state if not @state
+      if not @state
+        @id = 'n' + @ctx.id.split('-')[1]
+        @state = @ctx.state
       Future.resolved()
 
 
@@ -85,7 +89,7 @@ define [
     render: ->
       @_renderVtree().then (newVtree) =>
         patches = diff(@_vtree, newVtree)
-        rootElement = document.getElementById('w' + @ctx.id.split('-')[1])
+        rootElement = document.getElementById(@ctx.id.charAt(0) + @ctx.id.split('-')[1])
         patch(rootElement, patches, @vdomWidgetRepo)
         @_vtree = newVtree
       .failAloud()
@@ -100,11 +104,11 @@ define [
 
       calc = {}
       @onRender?(calc)
-      props =
-        id: 'w' + @ctx.id.split('-')[1]
 
       Future.require(vdomTmplFile).then (renderFn) =>
-        renderFn(props, @state, calc)
+        vnode = renderFn({}, @state, calc)
+        vnode.properties.id = @id
+        vnode
 
 
     renderDeepTree: ->
@@ -139,7 +143,7 @@ define [
       @param {VWidget} vwidget
       @return {Promise.<VNode>}
       ###
-      @widgetFactory.create(vwidget.type, vwidget.properties, vwidget.slotNodes, @getBundle()).then (widget) ->
+      @widgetFactory.create(vwidget.type, vwidget.properties, vwidget.slotNodes, this).then (widget) ->
         widget.renderDeepTree()
 
 
@@ -152,6 +156,34 @@ define [
           @_vtree = vtree
       else
         Future.resolved(@_vtree)
+
+
+    getInitCode: (parentId) ->
+      ###
+      Uses widgetHierarchy service as a child widgets source
+      @override
+      ###
+      parentStr = if parentId? then ",'#{ parentId }'" else ''
+
+      namedChilds = {}
+      for name, widget of @childByName
+        namedChilds[widget.ctx.id] = name
+
+      serializedModelBindings = {}
+      for key, mb of @_modelBindings
+        serializedModelBindings[key] = mb.model.serializeLink()
+
+      # filter bad unicode characters before sending data to browser
+      ctxString = unescape(encodeURIComponent(JSON.stringify(@ctx))).replace(/[\\']/g, '\\$&').replace(/<\/script>/g, '<\\/script>')
+
+      jsonParams = [namedChilds, @childBindings, serializedModelBindings]
+      jsonParamsString = (jsonParams.map (x) -> JSON.stringify(x)).join(',')
+
+      # indentation is mandatory to beautify page source formatting
+      """
+            wi.init('#{ @getPath() }','#{ ctxString }',#{ jsonParamsString },#{ @_isExtended }#{ parentStr });
+      #{ (widget.getInitCode(@id) for widget in @widgetHierarchy.getChildren(this)).join('') }
+      """
 
 
     updateDigit: ->
