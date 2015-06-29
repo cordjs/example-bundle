@@ -1,4 +1,10 @@
 <ul>
   <li>Item {props.testProp}</li>
   <li>Item 2</li>
+  <li>
+    Maybe widget:
+  {?calc.showWidget}
+    <widget type="//widgets/vdom/vdomTestWidget/VdomChild" testProp={calc.digit}/>
+  {/calc.showWidget}
+  </li>
 </ul>
