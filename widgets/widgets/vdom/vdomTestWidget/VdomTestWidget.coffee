@@ -90,8 +90,13 @@ define [
       @_renderVtree().then (newVtree) =>
         patches = diff(@_vtree, newVtree)
         rootElement = document.getElementById(@ctx.id.charAt(0) + @ctx.id.split('-')[1])
-        patch(rootElement, patches, @vdomWidgetRepo)
-        @_vtree = newVtree
+        patch rootElement, patches,
+          widget: this
+          widgetRepo: @vdomWidgetRepo
+          widgetFactory: @widgetFactory
+        .then =>
+          @_vtree = newVtree
+          return
       .failAloud()
 
 
