@@ -6,13 +6,13 @@ define [
   'cord!vdom/vtree/diff'
   'cord!vdom/vtree/vtree'
   'cord!vdom/vpatch/createElement'
-  'cord!vdom/vpatch/patch'
   'underscore'
-], (Widget, Utils, Future, stringify, diff, vtree, createElement, patch, _) ->
+], (Widget, Utils, Future, stringify, diff, vtree, createElement, _) ->
 
   class VdomTestWidget extends Widget
 
     @inject: [
+      'domPatcher'
       'vdomWidgetRepo'
       'widgetFactory'
       'widgetHierarchy'
@@ -90,11 +90,7 @@ define [
       @_renderVtree().then (newVtree) =>
         patches = diff(@_vtree, newVtree)
         rootElement = document.getElementById(@ctx.id.charAt(0) + @ctx.id.split('-')[1])
-        patch rootElement, patches,
-          widget: this
-          widgetRepo: @vdomWidgetRepo
-          widgetFactory: @widgetFactory
-        .then =>
+        @domPatcher.patch(rootElement, patches, this).then =>
           @_vtree = newVtree
           return
       .failAloud()
@@ -105,15 +101,20 @@ define [
       Renders the widget's template to the virtual DOM tree, using current state and props
       @return {Promise.<VNode>}
       ###
-      vdomTmplFile = "bundles/#{ @getDir() }/#{ @constructor.dirName }.vdom"
-
       calc = {}
       @onRender?(calc)
 
-      Future.require(vdomTmplFile).then (renderFn) =>
+      @constructor.getTemplate().then (renderFn) =>
         vnode = renderFn({}, @state, calc)
         vnode.properties.id = @id
         vnode
+
+
+    @getTemplate: ->
+      if not @_cachedTemplatePromise
+        vdomTmplFile = "bundles/#{ @relativeDirPath }/#{ @dirName }.vdom"
+        @_cachedTemplatePromise = Future.require(vdomTmplFile)
+      @_cachedTemplatePromise
 
 
     renderDeepTree: ->
