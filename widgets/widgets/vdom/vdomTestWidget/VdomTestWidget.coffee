@@ -105,8 +105,9 @@ define [
       calc = {}
       @onRender?(calc)
 
-      @constructor.getTemplate().then (renderFn) =>
-        vnode = renderFn({}, @state, calc)
+      @constructor.getTemplate().bind(this).then (renderFn) ->
+        renderFn({}, @state, calc)
+      .then (vnode) ->
         vnode.properties.id = @id
         vnode
 
