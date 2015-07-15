@@ -11,6 +11,8 @@ define [
       'widgetHierarchy'
     ]
 
+    @css: true
+
     @initialState
       digit: 1
       inputClass: 'no-border'
