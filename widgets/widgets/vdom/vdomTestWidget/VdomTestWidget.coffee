@@ -25,6 +25,6 @@ define [
     updateDigit: ->
       @setState digit: Math.random() * 10
       if @state.digit > 5
-        @setState inputClass: 'with-border'
+        @setState inputClass: 'input--with-border'
       else
-        @setState inputClass: 'no-border'
+        @setState inputClass: 'input--no-border'

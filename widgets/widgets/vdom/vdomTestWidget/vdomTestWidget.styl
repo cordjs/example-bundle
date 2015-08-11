@@ -1,6 +1,18 @@
-.vdom-test
-  .no-border
+@require "//common"
+@require "/vendor/bootstrap/css/bootstrap.css"
+
+@import "subStyle"
+
+.input
+  &--no-border
     border-width: 0
 
-  .with-border
-    border: 1px solid #999
+  &--with-border
+    border: 1px solid $gray
+
+  .test[attr="xxxy"]
+    color: red
+
+  &.yyy
+  &.xxx
+    font-size: 12em
